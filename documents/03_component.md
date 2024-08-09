@@ -242,7 +242,11 @@ const MyComponent = ({ data = 'hi~', children }) => {
 ### props 검증
 ``propTypes``라는 함수를 사용하여 컴포넌트에서 props로 넘어오는 값의 자료형과 필수 전달 속성 등을 설정할 수 있다.
 
+사용을 위해서는 먼저 ``prop-type`` 패키지를 import 해야 한다.
+
 ```javascript
+import PropTypes from 'prop-types';
+
 const MyComponent = ({ data, children, reqProps }) => {
   return (
     <>
