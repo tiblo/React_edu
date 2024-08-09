@@ -239,5 +239,26 @@ const MyComponent = ({ data = 'hi~', children }) => {
 };
 ```
 
+### props 검증
+``propTypes``라는 함수를 사용하여 컴포넌트에서 props로 넘어오는 값의 자료형과 필수 전달 속성 등을 설정할 수 있다.
 
+```javascript
+const MyComponent = ({ data, children, reqProps }) => {
+  return (
+    <>
+      <div>data : {data}</div>
+      <div>{children}</div>
+      <div>number : {reqProps}</div>
+    </>
+  );
+};
+
+MyComponent.propTypes = {
+  data: PropTypes.string,
+  reqProps: PropTypes.number.isRequired,
+};
+```
+``data`` props는 String 이어야 하며, 다른 자료형일 경우 console에 경고가 뜨게 된다.
+
+``reqProps``가 넘어오지 않을 경우 마찬가지로 경고가 뜬다.
 
