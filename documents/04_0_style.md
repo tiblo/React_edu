@@ -91,3 +91,57 @@ CSS 변수도 전역와 지역으로 구분하여 사용할 수 있으며, HTML 
 즉, 문서 전체에서 사용할 수 있는 변수가 됨을 나타낸다.
 
 ``:root``가 아닌 특정 요소를 선택한 스타일 범위에 변수를 작성하면 지역 변수가 된어, 그 범위 내에서만 사용할 수 있다.
+
+```css
+div {
+	--padding-size: 10px;
+	...
+}
+```
+
+``text-color`` 변수는 div 요소에만 적용할 수 있는 지역 변수가 된다.
+
+### 변수 사용
+변수를 사용할 때는 ``var(변수)``로 사용할 수 있다.
+
+```css
+div {
+	background-color: var(--main-color);
+}
+```
+
+지역 변수의 경우 변수를 선언한 범위 안에서만 사용할 수 있다.
+```css
+div {
+	--size: 10px;
+	padding: var(--size);
+	margin: var(--size);
+}
+```
+
+### 변수 상속
+Html 요소가 계층구조로 작성되어 있는 경우 부모 요소에 적용되는 지역 변수는 자식 요소의 스타일에서 상속받아 사용할 수 있다.
+
+```html
+<div class="parent">
+	<div class="child1"></div>
+	<div class="child2"></div>
+</div>	
+```
+
+```css
+.parent {
+	--size: 2em;
+}
+
+.child1 {
+	font-size: 1.6em;
+}
+
+.child2 {
+	font-size: var(--size);
+}
+```
+``child2``는 ``parent``의 ``--size`` 값인 ``2em``으로 설정된다.
+
+
