@@ -58,6 +58,9 @@ export default MyStyledComponet;
 
 프로젝트를 실행하여 브라우저에서 html 요소를 확인하면 styled-components는 css 클래스로 처리되며, 이때 클래스명은 자동으로 생성된다.
 
+### 자바스크립트 표현식 활용
+Styled-components는 Template Literal로 작성하는데 그 안에 자바스크립트의 표현식을 활용할 수 있다. 즉, 변수나 조건연산식 등을 ``${}``로 감싸서 작성하면 동적인 처리가 가능해 진다.
+
 ### 가변 스타일링
 styled-components는 일종의 컴포넌트이기 때문에 react 컴포넌트로부터 props를 사용하여 값을 받을 수 있으며, props에 따라 스타일을 변경하도록 작성할 수 있다.
 
@@ -162,14 +165,98 @@ function App() {
 
 ### 변수 활용
 #### props를 활용
-위의 [가변 스타일링](###가변-스타일링)과 같이 
+위의 ``가변 스타일링``과 같이 props로 변수를 전달하는 방식으로 활용한다. 
+
+```javascript
+import styled from 'styled-components';
+
+const StyButton = styled.button`
+  background-color: ${props => props.pri ? 'blue' : 'gray'};
+  color: ${props => props.pri ? 'white' : 'black'};
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+`;
+
+function MyButton() {
+  return (
+    <div>
+      <StyButton pri>Primary Button</StyButton>
+      <StyButton>Secondary Button</StyButton>
+    </div>
+  );
+}
+
+export default MyButton;
+```
 
 #### CSS 변수 활용
+CSS는 ``--``로 변수를 선언하고 ``val()``로 변수의 값을 사용할 수 있다. 이것을 styled-components에서도 활용할 수 있다.
+
+```javascript
+import styled from 'styled-components';
+
+const StyButton = styled.button`
+  --bg-color: ${props => props.primary ? 'blue' : 'gray'};
+  --text-color: white;
+
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+`;
+
+function MyButton() {
+  return (
+    <div>
+      <StyButton pri>Primary Button</StyButton>
+      <StyButton>Secondary Button</StyButton>
+    </div>
+  );
+}
+
+export default MyButton;
+```
 
 #### JS 변수 활용
+자바스크립트 변수(상수)를 사용하여 동적인 스타일을 처리할 수도 있다.
+
+```javascript
+import styled from 'styled-components';
+
+const padding-size = '15px';  //변수에 패딩 크기를 저장
+
+const StyButton = styled.button`
+  background-color: blue;
+  color: white;
+  padding: ${padding-size};  //변수 활용 
+  border: none;
+  border-radius: 5px;
+`;
+
+function MyButton() {
+  return (
+    <div>
+      <StyButton>Button</StyButton>
+    </div>
+  );
+}
+
+export default MyButton;
+```
+
+변수의 값을 불러올 때는 ``${}``를 사용한다.
 
 ### Polished
+styled-components는 lighten(), darken() 같은 함수는 제공되지 않는다. 대신 ``polished`` 패키지를 함께 활용하면 같은 상황을 처리할 수 있다.
 
+먼저 Polished 패키지를 설치해야 한다.
 
+```
+yarn add polished
+```
+
+lighten(), darken()
 
 
