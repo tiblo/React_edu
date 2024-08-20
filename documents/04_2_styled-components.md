@@ -165,7 +165,7 @@ function App() {
 
 ### 변수 활용
 #### props를 활용
-위의 ``가변 스타일링``과 같이 props로 변수를 전달하는 방식으로 활용한다. 
+위의 [가변 스타일링](#가변-스타일링)과 같이 props로 변수를 전달하는 방식으로 활용한다. 
 
 ```javascript
 import styled from 'styled-components';
