@@ -246,8 +246,6 @@ function MyButton() {
 export default MyButton;
 ```
 
-변수의 값을 불러올 때는 ``${}``를 사용한다.
-
 ### Polished
 styled-components는 lighten(), darken() 같은 함수는 제공되지 않는다. 대신 ``polished`` 패키지를 함께 활용하면 같은 상황을 처리할 수 있다.
 
@@ -257,6 +255,12 @@ styled-components는 lighten(), darken() 같은 함수는 제공되지 않는다
 yarn add polished
 ```
 
-lighten(), darken()
+lighten(), darken()등의 함수를 사용하려면 import를 수행해야 한다.
 
+```javascript
+import { lighten, darken } from "polished";
+```
 
+lighten()과 darken() 함수는 2개의 인자를 사용한다. 첫 번째 인자는 변경할 수치이며 0부터 1 사이값을 ``0.1``(10%)과 같이 작성한다. 두 번째 인자에는 기본 색상을 작성한다.
+
+그 밖에도 다양한 함수들이 제공되고 있으니 자세한 내용은 [여기](https://polished.js.org/docs/)를 참고.
