@@ -31,7 +31,7 @@ React는 DOM에 바로 변경 사항을 처리하지 않고 복제본인 Virtual
 
 ## 개발환경 설정
 ### Node.js 설치
-https://nodejs.org/en
+https://nodejs.org/ko
 
 ### Yarn 설치
 node 설치 후 VSCode 터미널에서 npm으로 설치
