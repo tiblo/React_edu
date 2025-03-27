@@ -9,7 +9,7 @@ onclick, onchange, onkeydown 등 이벤트 처리용 속성 -> onClick, onChange
 
 2. 이벤트에 실행할 자바스크립트 함수를 호출하는 것이 아니라, 호출될 함수의 참조값을 전달하는 것이다.
 
-HTML에서 이벤트를 설정할 때는 큰따옴표 안에 실행할 코드를 넣었지만, 리액트에서는 함수 형태의 객체를 전달한다.
+HTML에서 이벤트를 설정할 때는 큰따옴표 안에 실행할 코드를 넣었지만, 리액트에서는 함수의 참조(reference)를 전달한다.
 
 ```javascript
 onclick="func()" -> onClick={func}
