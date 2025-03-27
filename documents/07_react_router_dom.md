@@ -12,6 +12,16 @@ html5의 history api를 사용하여 페이지를 새로고침 하지 않아도 
 
 라우팅과 관련된 컴포넌트는 BrowserRouter 하위에 위치해야 한다.
 
+```jsx
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
+```
+index.js에 App 컴포넌트를 감싼 형태로 작성하면 하위 페이지 이동을 쉽게 처리할 수 있다.
+
 ### Route
 현재 경로에 따라 다른 컴포넌트를 보여주는 컴포넌트.
 
