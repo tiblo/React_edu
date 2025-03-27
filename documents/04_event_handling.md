@@ -106,10 +106,74 @@ const ChildComp = ({ onBtnClick }) => {
 export default ChildComp;
 ```
 
-이벤트의 발생은 자식 컴포넌트지만 이벤트를 통한 데이터의 활용이나 모양의 변화는 부모쪽에서 발생해야 하는 경우에 이 방법을 활용한다.
+이벤트의 발생은 자식 컴포넌트(ChildComp)지만 이벤트를 통한 데이터의 활용이나 모양의 변화는 부모쪽에서 발생해야 하는 경우에 이 방법을 활용한다.
+
+자식 컴포넌트에서 실행하는 클릭 이벤트 처리용 ```onBtnClick```은 부모 컴포넌트의 ```handleClick```이 된다.
 
 자식 컴포넌트들이 발생시키는 메시지의 내용은 다르지만, 동일한 기능이 처리되어야 하는 경우에 활용한다.
 
+```javascript
+import React from 'react';
+import ChildComp1 from './ChildComp1';
+import ChildComp2 from './ChildComp2';
+
+const ParentComp = () => {
+  // 이벤트 핸들러 함수 정의
+  const handleClick = (msg) => {
+    alert(msg);
+  };
+
+  return (
+    <div>
+      <h1>Parent Component</h1>
+      {/* 자식 컴포넌트에 이벤트 함수를 props로 전달 */}
+      <ChildComp1 onBtnClick={handleClick} />
+      <ChildComp2 onBtnClick={handleClick} />
+    </div>
+  );
+}
+
+export default ParentComp;
+```
+
+```javascript
+import React from 'react';
+
+// 화살표 함수로 자식 컴포넌트 정의
+const ChildComp1 = ({ onBtnClick }) => {
+  return (
+    <div>
+      <h2>Child Component</h2>
+      {/* props로 전달받은 클릭 함수를 버튼의 onClick에 설정 */}
+      <button onClick={() => onBtnClick("1이다.")}>Click me</button>
+      {/* 이 onClick은 DOM의 이벤트 처리 속성이다. */}
+    </div>
+  );
+};
+
+export default ChildComp1;
+```
+
+
+```javascript
+import React from 'react';
+
+// 화살표 함수로 자식 컴포넌트 정의
+const ChildComp2 = ({ onBtnClick }) => {
+  return (
+    <div>
+      <h2>Child Component</h2>
+      {/* props로 전달받은 클릭 함수를 버튼의 onClick에 설정 */}
+      <button onClick={() => onBtnClick("2다.")}>Click me</button>
+      {/* 이 onClick은 DOM의 이벤트 처리 속성이다. */}
+    </div>
+  );
+};
+
+export default ChildComp2;
+```
+
+두 자식 컴포넌트는 서로 다른 메시지를 부모 컴포넌트로 전달할 수 있게 된다. 즉 부모 컴포넌트의 한 이벤트 처리 함수로 두 자식 컴포넌트의 메시지를 출력할 수 있게 된다.
 
 ## ``input`` 태그의 입력 이벤트 처리
 input 태그를 통해 사용자의 입력값을 받기 위해서는 onchange 이벤트를 사용해야 하며 이 때 입력값을 받아서 저장하기 위한 state를 사용해야 한다.
