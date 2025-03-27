@@ -55,8 +55,10 @@ option
         페이지 전환 시 데이터를 넘길 수 있음.<br>
 ```jsx        
 nav("uri", { state: object });
-object - 변수, 객체{data1: value1, data2: value2}
 ```
+
+object - 변수, 객체{data1: value1, data2: value2}
+
 
 ```쿼리스트링 : http://localhost/somepage?data1=v1&data2=v2```
         
