@@ -40,7 +40,7 @@ console.log(doubled); // [2, 4, 6]
 const doubled = numbers.map(num => num * this.mul, obj);
 ```
 
-## 목록 항목 넣기
+## HTML 요소 반복 생성
 다음은 비순서 목록 ```<ul>```에 ```<li>```을 추가하는 예제이다.
 ```jsx
 import React from "react";
