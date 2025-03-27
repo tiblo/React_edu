@@ -1,6 +1,6 @@
 # React 시작
 ## 개발 환경
-* Node.js (https://nodejs.org/en) - 권장 버전 설치
+* Node.js (https://nodejs.org/ko) - 권장 버전 설치
 * VSCode (https://code.visualstudio.com/)
 * Yarn (https://classic.yarnpkg.com/en/docs/install#windows-stable) - npm 대신 사용(안해도 됨)
 > yarn을 기준으로 작성
