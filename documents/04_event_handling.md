@@ -216,7 +216,7 @@ public void setUseValue(useValue){
 - useState 객체에게 '초기값'을 갖는 `useValue`라는 변수를 생성하고, `setUseValue`라는 setter 함수를 만들어라라고 명령하는 문장이다.
 - `useValue`에 저장된 값을 사용할 때는 일반 변수처럼 사용한다.
 
-카운트를 증가시키는 예
+입력값을 출력하는 예
 ```jsx
 import { useState } from "react";
 
