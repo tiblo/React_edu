@@ -143,7 +143,7 @@ import React from 'react';
 const ChildComp1 = ({ onBtnClick }) => {
   return (
     <div>
-      <h2>Child Component</h2>
+      <h2>Child Component1</h2>
       {/* props로 전달받은 클릭 함수를 버튼의 onClick에 설정 */}
       <button onClick={() => onBtnClick("1이다.")}>Click me</button>
       {/* 이 onClick은 DOM의 이벤트 처리 속성이다. */}
@@ -162,7 +162,7 @@ import React from 'react';
 const ChildComp2 = ({ onBtnClick }) => {
   return (
     <div>
-      <h2>Child Component</h2>
+      <h2>Child Component2</h2>
       {/* props로 전달받은 클릭 함수를 버튼의 onClick에 설정 */}
       <button onClick={() => onBtnClick("2다.")}>Click me</button>
       {/* 이 onClick은 DOM의 이벤트 처리 속성이다. */}
