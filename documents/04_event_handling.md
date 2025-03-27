@@ -107,4 +107,65 @@ export default ChildComp;
 ```
 
 ## ``input`` 태그의 입력 이벤트 처리
+input 태그를 통해 사용자의 입력값을 받기 위해서는 onchange 이벤트를 사용해야 하며 이 때 입력값을 받아서 저장하기 위한 state를 사용해야 한다.
+
+### state(상태값)
+state는 컴포넌트에서 변화된 내용을 유지 관리하기 위해 사용하는 일종의 변수이다. 
+
+JSX는 HTML 코드를 사용하고 있지만, 이것은 HTML 코드의 형태를 빌어온 것이지 실제 HTML은 아니다.(JSX는 babel이라는 인터프리터가 JS로 변환하여 처리해준다.)
+
+```JSX의 HTML``` -> ```JS 코드``` -> ```HTML```의 변환 단계를 거친다.
+
+예를 들어 HTML의 input 태그는 사용자가 입력하는 값을 value에 저장하면 동시 화면에 한 글자씩 출력해 주는 기능(에코)을 제공한다. JSX에 작성된 input 태그는 실제 HTML이 아니기 때문에 저장공간 및 에코 출력을 위한 기능이 작성되어야 한다.
+
+즉, 빈 공간이었던 input 태그에 사용자의 입력이 발생(이벤트 발생)한다는 것은 컴포넌트가 변화된다는 것을 의미하는 것이며, 이 변화된 내용을 위한 저장 공간 및 에코 출력 기능을 제공하기 위해 state를 활용한다.
+
+## useState
+useState는 React Hooks에 포함된 상태 처리 기능을 제공하는 객체이다.
+- React Hooks는 클래스형 컴포넌트에서 제공하는 기능을 함수형 컴포넌트에서도 활용할 수 있도록 제공되는 라이브러리
+
+useState는 상태값을 저장하는 변수와 변수의 값을 변경하는 함수로 구성되어 있으며, 상태값을 바로 변경할 수 없다는 제약을 갖는다.
+
+state가 변경되면 react는 해당 컴포넌트를 다시 렌더링하여 처리해야 하는데 상태값이 바로 변경될 경우 이를 감지할 수 없게 된다. 그래서 상태값을 반드시 변경 함수를 활용하여 처리하도록 하고 있다. 
+
+useState를 생성하는 문법은 다음과 같다.
+
+```javascript
+const [useValue, setUseValue] = useState("초기값");
+```
+
+이 문법을 자바 코드로 작성한다면 다음과 같다.(예는 예일 뿐)
+
+```java
+private String useValue;
+
+public void setUseValue(useValue){
+    this.useValue = useValue;
+}
+```
+
+- useState 객체에게 '초기값'을 갖는 `useValue`라는 변수를 생성하고, `setUseValue`라는 setter 함수를 만들어라라고 명령하는 문장이다.
+- `useValue`에 저장된 값을 사용할 때는 일반 변수처럼 사용한다.
+
+카운트를 증가시키는 예
+```jsx
+import { useState } from "react";
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  function increase() {
+    setCount(count + 1); // 상태 변경
+  }
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={increase}>증가</button>
+    </div>
+  );
+}
+
+export default App;
+```
 
