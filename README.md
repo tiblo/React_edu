@@ -137,3 +137,9 @@ chcp 65001
 
 ``F1`` 누르고 위와 같이 타이핑하여 실행
 
+## 보안오류 처리
+* Windows Powershell을 관리자 권한으로 실행하여 다음 명령을 실행한다.
+```
+set-ExecutionPolicy RemoteSigned
+```
+중간에 y 입력할 것.
