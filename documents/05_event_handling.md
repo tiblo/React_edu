@@ -7,6 +7,7 @@ HTML 이벤트와 인터페이스가 동일하기 때문에 사용법이 꽤 비
 
 onclick, onchange, onkeydown 등 이벤트 처리용 속성 -> onClick, onChange, onKeyDown 등으로 표기
 
+
 2. 이벤트에 실행할 자바스크립트 함수를 호출하는 것이 아니라, 호출될 함수의 참조값을 전달하는 것이다.
 
 HTML에서 이벤트를 설정할 때는 큰따옴표 안에 실행할 코드를 넣었지만, 리액트에서는 함수의 참조(reference)를 전달한다.
@@ -17,6 +18,7 @@ onclick="func()" -> onClick={func}
 
 일반 자바스크립트에서와 같이 HTML에 ```onClick={func()}``` 형식으로 작성하게 되면 ```func()```함수가 클릭이 발생한 시점에 호출되는 것이 아니라 렌더링되는 시점에 호출되어 클릭하지 않아도 실행되는 문제가 발생한다.
 
+
 3. DOM 요소에만 이벤트를 설정할 수 있다.
 
 즉 div, button, input, form, span 등의 DOM 요소에는 이벤트를 설정할 수 있지만, 우리가 직접 만든 컴포넌트에는 이벤트를 자체적으로 설정할 수 없다.
@@ -26,6 +28,7 @@ onclick="func()" -> onClick={func}
 ```
 
 예를 들어 MyComponent에 onClick 값을 설정한다면 MyComponent를 클릭할 때 handleClick 함수를 실행하는 것이 아니라, 그냥 이름이 onClick인 props를 MyComponent에게 전달해 줄 뿐이다.
+
 
 ## 인자가 없는 이벤트 함수 처리
 
