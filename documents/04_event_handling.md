@@ -152,16 +152,16 @@ public void setUseValue(useValue){
 import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [text, setText] = useState("");
 
-  function increase() {
-    setCount(count + 1); // 상태 변경
-  }
+  const handleChange = (event) => {
+    setText(event.target.value);
+  };
 
   return (
     <div>
-      <p>Count: {count}</p>
-      <button onClick={increase}>증가</button>
+      <input type="text" value={text} onChange={handleChange} />
+      <p>입력값: {text}</p>
     </div>
   );
 }
