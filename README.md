@@ -19,12 +19,12 @@ Javascript로 element를 제어하는 것은 실제로는 이 DOM을 제어하�
 
 브라우저는 javascript에 의해 DOM이 변경되면 해당 Element의 변경 사항을 화면에 출력하기 위해 Reflow와 Repaint를 수행하게 된다.
 
-### Virtual DOM
-React는 DOM을 바로 제어하지 않고 Virtual DOM을 생성하여 변경 사항을 처리한다.
+### 가상 DOM(Virtual DOM)
+React는 DOM을 바로 제어하지 않고 가상 DOM을 생성하여 변경 사항을 처리한다.
 
 변경 사항 처리를 위해 브라우저는 CSS를 다시 연산하고, 레이아웃을 구성하고(Reflow), 페이지를 다시 칠(Repaint)하게 되는데 시간이 많이 소요된다.
 
-React는 DOM에 바로 변경 사항을 처리하지 않고 복제본인 Virtual DOM에 먼저 반영하여 기존 DOM과 비교를 통해 변경할 부분을 최소화함으로써 소요 시간을 줄인다.
+React는 실제 DOM에 바로 변경 사항을 처리하지 않고 복제본인 가상 DOM에 먼저 반영하여 기존 DOM과 비교를 통해 변경할 부분을 최소화함으로써 소요 시간을 줄인다.
 
 ![image](https://github.com/tiblo/React_edu/assets/34559256/2cf6fb96-0084-4b76-a1d3-6aa434c9e541)
 [이미지출처 : React-동작-원리](https://velog.io/@leitmotif/React-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%AC)
