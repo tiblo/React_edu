@@ -277,9 +277,36 @@ const {userId, userPwd} = form;
 이 후부터는 ```form.```을 붙이지 않고 ```userId```나 ```userPwd```로 작성하면 된다.
 
 ### 이벤트 처리 함수
-이벤트 객체를 파라미터로 받아서 처리
+이벤트 객체를 파라미터로 받아서 처리하도록 작성한다.
 
+```jsx
+  const changeHandle = (e) => {
+    const newForm = {
+      ...form, //기존 form의 내용을 그대로 복제
+      [e.target.name]: e.target.value,
+      //입력으로 들어온 input 요소의 name에 맞춰서 value를 변경
+    };
+    
+    setForm(newForm); //state를 수정.
+  };
+```
 
+사용자 입력값으로 state를 변경하기 위해 입력값을 저장한 새로운 객체를 만들어서 처리한다.
 
+이 때 전개 구문을 활용하여 기존 form의 내용을 그대로 복제하고 입력된 값으로 덮어쓴다.
 
+아이디 입력 시 changeHandle의 내용은 다음과 같이 처리된다.
+```jsx
+  const newForm = {
+      userId = 'user',    //새로운 입력값 저장('user')
+      userPwd = "",       //기존 입력값 유지
+  }
+```
 
+비밀번호 입력 시 chageHandle의 내용
+```jsx
+  const newForm = {
+      userId = 'user',    //아이디 입력 때 저장한 값 유지
+      userPwd = '1234',   //새로운 입력값 저장('1234')
+  }
+```
