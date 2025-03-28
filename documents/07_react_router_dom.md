@@ -46,11 +46,11 @@ Link 컴포넌트가 <a>로 변환된다.
 to는 Route 컴포넌트의 path와 연계되어 해당 컴포넌트로 이동시킴.
 
 ### useNavigate()
-조건이 필요한 곳에서 navigate 함수를 호출하여 경로를 이동.
+조건이 필요한 곳에서 navigate 함수를 호출하여 경로를 이동시킬 때 사용하는 훅(hook)이다..
 
-Link는 <a> 태그와 같은 동작을 수행하는 컴포넌트로 클릭 시 바로 이동을 시키지만, 페이지 전환 시 추가로 처리해야 하는 로직이 있을 경우, 또는 조건부 페이지 이동에서 useNavigate를 사용.
+Link는 <a> 태그와 같은 동작을 수행하는 컴포넌트로 클릭 시 바로 이동을 시키지만, 페이지 전환 시 추가로 처리해야 하는 로직이 있을 경우, 또는 조건부 페이지 이동에서 useNavigate를 사용한다.
 
-예를 들어, 사용자 로그인과 관리자 로그인으로 구분된 경우 로그인 아이디에 따라 전환되는 화면을 다르게할 때 사용.
+예를 들어, 사용자 로그인과 관리자 로그인으로 구분된 경우 로그인 아이디에 따라 전환되는 화면을 다르게할 때 사용하게 된다.
 
 ```jsx
 const nav = useNavigate();
@@ -59,18 +59,55 @@ nav("uri"[, option]);
 
 option
 1. replace : 뒤로가기를 허용할지 여부를 설정<br>
-        nav("uri", { replace:true }); 뒤로 가기를 허용하지 않음.<br>
-        뒤로가기를 허용하지 않는 경우에만 사용.
+        nav("uri", { replace:true }); 뒤로 가기를 허용하지 않음.
 2. state : 일종의 쿼리스트링을 넘길 때 사용.<br>
-        페이지 전환 시 데이터를 넘길 수 있음.<br>
+        페이지 전환 시 데이터를 넘길 수 있음.
+
 ```jsx        
 nav("uri", { state: object });
+//object - 변수, 객체{data1: value1, data2: value2}
+//쿼리스트링 : http://localhost/somepage?data1=v1&data2=v2
 ```
 
-object - 변수, 객체{data1: value1, data2: value2}
+```jsx
+  const nav = useNavigate();
 
+  const clickHandle = () => {
+    alert("로그인 성공");
+    if (userId === "admin") {
+      //관리자 로그인
+      nav("/admin");
+    } else {
+      //일반 사용자 로그인
+      nav("/user", {state: userId});
+    }
+  };
+```
 
-```쿼리스트링 : http://localhost/somepage?data1=v1&data2=v2```
+로그인을 성공할 경우 사용자의 id로 구분하여 전환될 페이지를 다르게 처리하며, 이 때 데이터를 보낼 수 있게 된다.
+
         
 ### useLocation()
-위 state 값을 꺼낼 때 사용하는 훅(hook). 지정해서 꺼내는 방식이 아니라 다 꺼내는 방식.
+```useLocation()```은 현재 uri의 정보를 저장하고 있는 훅(hook)으로 state 값을 꺼낼 때 사용한다. 
+
+```useLocation```이 저장하는 주요 정보는 ```pahtname```과 ```state```이다.
+
+```pathname```현재 보여지는 화면의 uri를 저장하고 있으며, ```state```는 ```useNavigate()```로 보낸 데이터를 저장하고 있다.
+
+사용자 페이지에서의 예는 다음과 같다.
+```jsx
+const User = () => {
+  const location = useLocation();  //useLocation 생성
+  const st = location.state;       //state 가져오기
+  
+  return (
+    <div>
+      <h1>사용자 페이지</h1>
+      <p>{st}님 환영합니다.</p>
+      <p>일반 사용자가 보는 화면입니다.</p>
+    </div>
+  );
+};
+```
+
+
