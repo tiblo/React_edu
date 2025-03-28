@@ -295,7 +295,7 @@ const {userId, userPwd} = form;
 
 이 때 전개 구문을 활용하여 기존 form의 내용을 그대로 복제하고 입력된 값으로 덮어쓴다.
 
-아이디 입력 시 changeHandle의 내용은 다음과 같이 처리된다.
+아이디 입력 시 newForm의 내용은 다음과 같이 처리된다.
 ```jsx
   const newForm = {
       userId = 'user',    //새로운 입력값 저장('user')
@@ -303,10 +303,42 @@ const {userId, userPwd} = form;
   }
 ```
 
-비밀번호 입력 시 chageHandle의 내용
+비밀번호 입력 시 newForm의 내용은 
 ```jsx
   const newForm = {
       userId = 'user',    //아이디 입력 때 저장한 값 유지
       userPwd = '1234',   //새로운 입력값 저장('1234')
   }
 ```
+
+각 input에서 onChange 속성에 동일한 이벤트 처리 함수를 입력한다.
+
+```jsx
+  return (
+    <div>
+      <h2>로그인</h2>
+      <input
+        type="text"
+        name="userId"
+        placeholder="아이디 입력"
+        value={userId}
+        onChange={changeHandle}
+      />
+      <br />
+      <input
+        type="password"
+        name="userPwd"
+        placeholder="비밀번호 입력"
+        value={userPwd}
+        onChange={changeHandle}
+      />
+      <br />
+      <button onClick={clickHandle}>로그인</button>
+    </div>
+  );
+```
+
+
+
+
+
