@@ -197,7 +197,8 @@ export default App;
 ```Main```의 하위 컴포넌트는 ```<Route element={<Main />}>```의 자식 컴포넌트로 작성한다.
 
 ### Outlet
-> <Outlet>은 부모 경로 요소에서 자식 경로 요소를 렌더링하는 데 사용해야 합니다. 이렇게 하면 자식 경로가 렌더링될 때 중첩된 UI가 표시됩니다. 부모 경로가 정확히 일치하면 자식 인덱스 경로를 렌더링하거나 인덱스 경로가 없으면 아무것도 렌더링하지 않습니다.
+> An ```<Outlet>``` should be used in parent route elements to render their child route elements. This allows nested UI to show up when child routes are rendered. If the parent route matched exactly, it will render a child index route or nothing if there is no index route.
+> ```<Outlet>```은 부모 경로 요소에서 자식 경로 요소를 렌더링하는 데 사용해야 합니다. 이렇게 하면 자식 경로가 렌더링될 때 중첩된 UI가 표시됩니다. 부모 경로가 정확히 일치하면 자식 인덱스 경로를 렌더링하거나 인덱스 경로가 없으면 아무것도 렌더링하지 않습니다.
 
 
 
