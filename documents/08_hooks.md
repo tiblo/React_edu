@@ -72,6 +72,159 @@ const [state, dispatch] = useReducer(reducer, initState);
   - function reducer(state, action) {...} 형식으로 작성.
 - initState : state의 초기값.
 
+useReducer를 사용한 카운터 예
+```jsx
+import React, { useReducer } from "react";
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "INC":
+      return { value: state.value + 1 };
+    case "DEC":
+      return { value: state.value - 1 };
+    default: //아무것도 해당되지 않을 때 기존 상태를 반환
+      return state;
+  }
+}
+
+const MyReducer = () => {
+  const [state, dispatch] = useReducer(reducer, { value: 0 });
+  return (
+    <div>
+      <p>
+        현재 카운터값은 <b>{state.value}</b>
+      </p>
+      <button onClick={() => dispatch({ type: "INC" })}>+</button>
+      <button onClick={() => dispatch({ type: "DEC" })}>-</button>
+    </div>
+  );
+};
+
+export default MyReducer;
+```
+
+예제처럼 하나의 state에 두가지 동작(기능)에 따른 변화를 줄 수 있다. 단점은 reducer 함수의 설계 등 부가적으로 고려할 것이 있다는 점이다.
+
+## useMemo
+함수형 컴포넌트 내부에서 발생하는 연산을 최적화하기 위해 사용하는 라이브러리이다.
+
+연산이 필요없는 상황에서도 렌더링할 때마다 재 연산되는 것을 막는 용도로 사용한다.(별도로 작성한 함수의 호출을 제어하는 용도로 사용)
+
+### 기본 문법
+```jsx
+const variableName = useMemo(Callback, [의존성 배열]);
+```
+
+- Callback : 산술 처리 함수를 호출하는 Callback 함수.
+- 의존성 배열 : 변경이 발생할 수 있는 state 목록. 이 state들의 변경 시에만 Callback 함수를 실행.
+
+다음은 입력한 값의 평균을 계산하여 출력하는 예제이다.
+
+```jsx
+import React, { useState, useMemo, useCallback } from "react";
+
+//평균 계산용 함수
+const getAvg = (numbers) => {
+  console.log("평균 계산 중...");
+  if (numbers.length === 0) {
+    return 0;
+  }
+
+  const sum = numbers.reduce((a, b) => a + b); //총합 구함
+  const avg = sum / numbers.length; //평균
+
+  return avg;
+};
+
+const MyMemo = () => {
+  const [number, setNumber] = useState(""); //입력 숫자 저장
+  const [list, setList] = useState([]); //숫자 배열 저장
+
+  //입력한 숫자를 처리(number에 저장)하는 함수
+  const onch = useCallback((e) => {
+    setNumber(e.target.value);
+  }, []);
+
+  //숫자문자열을 숫자 배열로 변환
+  const onck = useCallback(() => {
+    const pNum = parseInt(number);
+    if (!isNaN(pNum)) {
+      const nextList = list.concat(pNum);
+      setList(nextList);
+      setNumber("");
+    }
+  }, [number, list]);
+
+  const avg = useMemo(() => getAvg(list), [list]);
+
+  return (
+    <div>
+      <input type="number" value={number} onChange={onch} />
+      <button onClick={onck}>등록</button>
+      <ul>
+        {list.map((value, index) => (
+          <li key={index}>{value}</li>
+        ))}
+      </ul>
+      <div>
+        <b>평균값 : </b>
+        {avg}
+      </div>
+    </div>
+  );
+};
+
+export default MyMemo;
+```
+
+```array.reduce(function(a, b))```는 배열을 값들을 하나의 값으로 축소할 때 사용하는 자바스크립트 함수이다.
+- a : function의 반환값을 저장하는 변수
+- b : 배열의 해당 값
+
+배열의 첫번째 값부터 꺼내와서 b에 저장하고 함수의 연산을 수행한 다음 a에 저장한다. 배열의 값을 누적할 때 주로 사용된다.
+
+새로운 값을 입력하고 등록 버튼을 클릭하면 list에 추가되어 평균을 다시 계산하게 된다. 
+
+렌더링이 발생하는 경우는 두가지로 입력값을 넣을 때와 목록에 값이 추가될 때이다. ```useMemo```를 사용하면 입력값을 넣을 때 발생한 렌더링에서는 평균을 구하지 않고, 목록에 값이 추가될 때만 평균을 다시 계산하도록 최적화할 수 있다.
 
 
+## useCallback
+useMemo와 비슷한 훅으로 렌더링 성능 최적화를 목적으로 한다. 리렌더링 시 동일한 함수가 다시 생성되는 것을 막기 위해 사용 한다.
 
+### 기본 문법
+```jsx
+const funcName = useCallback(() => {...}, [의존성 배열]);
+```
+- 의존성 배열의 state들에 변화가 발생할 때만 함수를 다시 생성한다.
+
+함수 내에서 state 값을 활용하지 않을 경우 최소 한 번만 수행하도록 의존성 배열을 비워둠으로써 렌더링 성능을 최적화 하게된다.
+
+하지만, state 값을 활용하는 경우에는 state 변화에 따라 다시 생성되도록 의존성 배열을 작성해야 한다.
+
+위의 useMemo 예제에 useCallback이 포함되어 있다.
+
+```jsx
+  //입력한 숫자를 처리(number에 저장)하는 함수
+  const onch = useCallback((e) => {
+    setNumber(e.target.value);
+  }, []);
+  //컴포넌트가 최초로 렌더링된 시점에 한번만 생성되면 되기 때문에 []로 설정.
+
+  //숫자문자열을 숫자 배열로 변환
+  const onck = useCallback(() => {
+    const pNum = parseInt(number);
+    if (!isNaN(pNum)) {
+      const nextList = list.concat(pNum);
+      setList(nextList);
+      setNumber("");
+    }
+  }, [number, list]);
+  //onck는 number나 list가 변경될 때 새로 생성되서,
+  //변경된 number나 list를 처리해야 하기 때문에
+  //[number, list]를 넣어줌.
+```
+
+## useRef
+Ref(Reference)는 리액트 코드를 통해 생성된 컴포넌트에 접근하는(컴포넌트를 식별하는) 방법을 제공한다.
+
+동적으로 자동 생성되는 컴포넌트에 ref 값을 설정하여 제어 시 사용할 수 있다.
