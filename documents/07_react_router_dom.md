@@ -200,6 +200,34 @@ export default App;
 > An ```<Outlet>``` should be used in parent route elements to render their child route elements. This allows nested UI to show up when child routes are rendered. If the parent route matched exactly, it will render a child index route or nothing if there is no index route.<br><br>
 > ```<Outlet>```은 부모 경로 요소에서 자식 경로 요소를 렌더링하는 데 사용해야 합니다. 이렇게 하면 자식 경로가 렌더링될 때 중첩된 UI가 표시됩니다. 부모 경로가 정확히 일치하면 자식 인덱스 경로를 렌더링하거나 인덱스 경로가 없으면 아무것도 렌더링하지 않습니다.
 
+```Outlet```은 부모 컴포넌트의 일부 화면에 자식 컴포넌트를 넣는데 사용하는 컴포넌트이다.
+
+예제에서 ```Main```의 하위 요소가 되는 ```SubMain```과 ```Sub1```, ```Sub2```를 ```Main``` 컴포넌트의 화면 안에서 전환되도록 해준다.
+
+```Main``` 코드는 다음과 같다.
+```jsx
+import React from "react";
+import { Link, Outlet } from "react-router-dom";
+
+const Main = () => {
+  return (
+    <div>
+      <h1>Main</h1>
+      <nav>
+        <Link to="/">[submain]</Link>
+        <Link to="/sub1">[sub1]</Link>
+        <Link to="/sub2">[sub2]</Link>
+      </nav>      
+      <hr></hr>
+      <Outlet/>
+    </div>
+  );
+};
+
+export default Main;
+```
+
+```<Outlet />```의 위치에 하위 컴포넌트의 화면이 나오게 된다.
 
 
 
