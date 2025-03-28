@@ -45,6 +45,39 @@ Route를 하나로 묶어주는 컴포넌트(페이지 영역)로 이 컴포넌�
 
 to는 Route 컴포넌트의 path와 연계되어 해당 컴포넌트로 화면을 변경시킨다.
 
+```jsx
+import { Link, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Home from "./components/Home";
+import About from "./components/About";
+
+function App() {
+  return (
+    <div className="App">
+      <div className="Nav">
+        <ul>
+          <li>
+            <Link to="/">HOME</Link>
+          </li>
+          <li>
+            <Link to="/about">ABOUT</Link>
+          </li>
+        </ul>
+      </div>
+      <hr />
+      <div className="Content">
+        <Routes>
+          <Route path="/" element={<Home title="My HOME" />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+```
+
 ### useNavigate()
 조건이 필요한 곳에서 navigate 함수를 호출하여 경로를 이동시킬 때 사용하는 훅(hook)이다..
 
@@ -85,7 +118,6 @@ nav("uri", { state: object });
 ```
 
 로그인을 성공할 경우 사용자의 id로 구분하여 전환될 페이지를 다르게 처리하며, 이 때 데이터를 보낼 수 있게 된다.
-
         
 ### useLocation()
 ```useLocation()```은 현재 uri의 정보를 저장하고 있는 훅(hook)으로 state 값을 꺼낼 때 사용한다. 
@@ -115,7 +147,57 @@ const User = () => {
 
 사이트 전체를 고려할 때 헤더나 풋터와 같이 모든 페이지에 동일한 내용이 출력되는 부분은 ```Routes``` 컴포넌트의 바깥쪽에 작성하면 해결된다. 
 
+보통 헤더에 메인 메뉴에 해당하는 링크가 존재하고 각 페이지별 하위 메뉴의 링크가 있을 경우, 페이지별로 하위 메뉴의 링크를 작성하지 않고, 중첩 레이아웃으로 해결한다.
 
+다음과 같은 구조를 가진 사이트가 있다고 가정한다.
+
+```
+root
+  ├─ Main
+  │   ├─ SubMain (사이트 첫페이지)
+  │   ├─ Sub1
+  │   └─ Sub2
+  └─ Second
+```
+
+```Main```과 ```Second``` 페이지를 전환하는 메뉴는 ```Header``` 컴포넌트에 있으며, ```SubMain```과 ```Sub1```, ```Sub2``` 페이지를 전환하는 메뉴는 ```Main``` 컴포넌트에 작성한다.
+
+App 컴포넌트는 다음과 같다.
+```jsx
+import "./App.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import { Route, Routes } from "react-router-dom";
+import Main from "./components/Main";
+import Sub1 from "./components/Sub1";
+import Sub2 from "./components/Sub2";
+import SubMain from "./components/SubMain";
+import Second from "./components/Second";
+
+function App() {
+  return (
+    <div className="App">
+      <Header />
+      <Routes>
+        <Route element={<Main />}>
+          <Route path="/" element={<SubMain />} />
+          <Route path="/sub1" element={<Sub1 />} />
+          <Route path="/sub2" element={<Sub2 />} />
+        </Route>
+        <Route path="/second" element={<Second />}/>
+      </Routes>
+      <Footer />
+    </div>
+  );
+}
+
+export default App;
+```
+
+```Main```의 하위 컴포넌트는 ```<Route element={<Main />}>```의 자식 컴포넌트로 작성한다.
+
+### Outlet
+> <Outlet>은 부모 경로 요소에서 자식 경로 요소를 렌더링하는 데 사용해야 합니다. 이렇게 하면 자식 경로가 렌더링될 때 중첩된 UI가 표시됩니다. 부모 경로가 정확히 일치하면 자식 인덱스 경로를 렌더링하거나 인덱스 경로가 없으면 아무것도 렌더링하지 않습니다.
 
 
 
