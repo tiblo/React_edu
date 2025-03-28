@@ -276,7 +276,8 @@ const {userId, userPwd} = form;
 
 이 후부터는 ```form.```을 붙이지 않고 ```userId```나 ```userPwd```로 작성하면 된다.
 
-
+### 이벤트 처리 함수
+이벤트 객체를 파라미터로 받아서 처리
 
 
 
