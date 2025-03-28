@@ -238,3 +238,47 @@ function App() {
 export default App;
 ```
 
+## 다중 입력 처리
+Event 객체를 파라미터로 받을 경우 하나의 이벤트 처리 함수로 여러개의 입력값을 함께 처리 할 수 있다. 
+
+### Event 객체
+브라우저에서 발생하는 이벤트(클릭, 키 입력 등)에 대한 정보를 담고 있는 객체이다.
+
+주요 속성은 다음과 같다.
+- target : 이벤트가 발생한 html요소를 나타낸다.
+- type : 이벤트의 종류(click, keydown 등)를 나타낸다.
+- key : 키 입력 이벤트 발생 시 입력된 키 값을 저장한다.
+
+event.target으로 어떤 html 요소에서 이벤트가 발생했는지를 파악할 수 있게 되며, 해당 요소의 value와 같은 html 속성값을 가져올 수 있다.
+
+### 다중 입력 처리를 위한 useState
+여러 값을 함께 저장할 수 있는 객체 형식으로 useState를 작성한다.
+
+로그인 폼을 위한 useState
+
+```jsx
+  const [form, setForm] = useState({
+    userId: "",
+    userPwd: "",
+  });
+```
+
+```userId```나 ```userPwd```를 출력할 때는 다음과 같이 사용한다.
+```jsx
+  <input type="text" value={form.userId}>
+```
+
+각 state 앞에 ```form.```을 붙이고 사용하면 되지만, 입력의 개수가 많아지면 불편하게 될 수도 있으니 다음과 같이 구조 분해 할당하여 사용하자.
+
+```jsx
+const {userId, userPwd} = form;
+```
+
+이 후부터는 ```form.```을 붙이지 않고 ```userId```나 ```userPwd```로 작성하면 된다.
+
+
+
+
+
+
+
