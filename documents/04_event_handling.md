@@ -200,7 +200,7 @@ state가 변경되면 react는 해당 컴포넌트를 다시 렌더링하여 처
 useState를 생성하는 문법은 다음과 같다.
 
 ```javascript
-const [useValue, setUseValue] = useState("초기값");
+  const [useValue, setUseValue] = useState("초기값");
 ```
 
 이 문법을 자바 코드로 작성한다면 다음과 같다.(예는 예일 뿐)
@@ -271,7 +271,7 @@ event.target으로 어떤 html 요소에서 이벤트가 발생했는지를 파�
 각 state 앞에 ```form.```을 붙이고 사용하면 되지만, 입력의 개수가 많아지면 불편하게 될 수도 있으니 다음과 같이 구조 분해 할당하여 사용하자.
 
 ```jsx
-const {userId, userPwd} = form;
+  const {userId, userPwd} = form;
 ```
 
 이 후부터는 ```form.```을 붙이지 않고 ```userId```나 ```userPwd```로 작성하면 된다.
