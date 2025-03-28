@@ -50,6 +50,8 @@ yarn 확인
 yarn -v
 ```
 
+[nodejs 설치 참고 사이트](https://sooseongcom.com/post/nodejs-npm)
+
 ## React Components Styling
 React Components Styling 방식
 * CSS(기존 방식)
