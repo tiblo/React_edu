@@ -37,7 +37,7 @@ export default MyComponent;
 ```javascript
 import React from 'react';
  
-function MyComponent {
+function MyComponent() {
   const name = '홍길동';
 
   return <div className="react">{name}</div>;  
