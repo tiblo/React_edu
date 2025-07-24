@@ -337,7 +337,7 @@ div {
 인수 뒤에 ``...``을 붙임으로서 가변 인수로 만들 수 있다.
 ```css
 @mixin myPadding($size...) {
-	padding: $size;
+	padding: join($size, (), $separator: space);
 }
 
 .box1 {
