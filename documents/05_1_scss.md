@@ -373,7 +373,7 @@ mixin으로 정의된 스타일 외에 고유 스타일을 지정하기 위해 �
 
 /* content block을 사용함 */
 .box2 {
-	@include box-style(200px) {
+	@include myBox(200px) {
 		border: 1px solid red;
 	};
 }
