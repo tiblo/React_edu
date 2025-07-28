@@ -4,7 +4,9 @@ React는 SPA(Single Page Applicationi)이기 때문에, html을 변경하는 방
 링크(메뉴)에 따라서 내부 컴포넌트를 변경하는 방식을 취한다. 이것을 리액트 라우팅이라고 한다.
 
 - 필요 패키지 : react-router-dom
-- 설치 : yarn add react-router-dom
+- 설치 : yarn add react-router-dom@6.26.1
+
+react 19.9.0 버전에 맞는 react-router-dom 버전(6.26.1) 설치
 
 ## react router dom에서 제공하는 컴포넌트(또는 함수)
 ### BrowserRouter
