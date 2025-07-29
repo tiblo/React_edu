@@ -223,6 +223,8 @@ Ref(Reference)는 리액트 코드를 통해 생성된 컴포넌트에 접근하
 
 동적으로 자동 생성되는 컴포넌트에 ref 값을 설정하여 제어 시 사용할 수 있다.
 
+또한, useRef는 값이 바뀌어도 리렌더링되지 않기 때문에, 일반 변수처럼 쓸 수 있다.
+
 ```jsx
 import React, { useRef } from "react";
 
