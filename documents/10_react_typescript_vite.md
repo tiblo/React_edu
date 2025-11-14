@@ -19,6 +19,8 @@
 
 ```Install with yarn and start now?```를 ```Yes```로 선택하면 필요한 패키지를 자동으로 설치하면서 바로 실행하게 된다.
 
+프로젝트 생성 시 프로젝트 이름 뒤에 ```--template react-ts```를 붙이면 ```Select a framework:```와 ```Select a variant:``` 잘문을 넘겨서 프로젝트를 생성할 수 있다.
+
 ## ESLint와 Prettier 설정
 
 먼저 서버를 중단(```ctrl + c```)하고 프로젝트 폴더로 이동(```> cd project_name```)한 다음 진행한다.
@@ -96,11 +98,11 @@ export default defineConfig([
     plugins: { 
       prettier: prettierPlugin,  //수정
      },
-    //추가
+    //////////추가
     rules: {
       ...js.configs.recommended.rules,
     },
-    //////
+    //////////////
     extends: ["js/recommended"], 
     languageOptions: { globals: globals.browser } 
   },
@@ -109,6 +111,11 @@ export default defineConfig([
   prettierConfig, //추가
 ]);
 ```
+
+### VSCode 확장
+
+```ESLint```와 ```Prettier - Code formatter```를 설치한다.
+
 
 
 
