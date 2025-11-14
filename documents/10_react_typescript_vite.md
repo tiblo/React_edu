@@ -74,7 +74,7 @@ Which package manager do you want to use? · yarn
 Prettier의 설치는 다음과 같다.
 
 ```bash
-yarn add -D prettier
+> yarn add -D prettier
 ```
 
 다음 프로젝트 루트에 ```.prettierrc``` 파일을 생성하여 다음과 같이 작성한다.
