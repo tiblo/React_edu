@@ -21,6 +21,10 @@
 
 프로젝트 생성 시 프로젝트 이름 뒤에 ```--template react-ts```를 붙이면 ```Select a framework:```와 ```Select a variant:``` 잘문을 넘겨서 프로젝트를 생성할 수 있다.
 
+```bash
+> yarn create vite project_name --template react-ts
+```
+
 ## ESLint와 Prettier 설정
 
 먼저 서버를 중단(```ctrl + c```)하고 프로젝트 폴더로 이동(```> cd project_name```)한 다음 진행한다.
