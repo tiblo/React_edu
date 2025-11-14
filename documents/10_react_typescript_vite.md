@@ -1,7 +1,8 @@
 # 프로젝트 생성
 
 ## Vite로 React 프로젝트 생성
-```
+
+```bash
 > yarn create vite project_name
 ```
 
@@ -35,6 +36,78 @@ ESLint의 설치는 다음과 같다.
 
 ```bash
 > yarn add -D eslint
+```
+
+다음은 ESLint의 초기화 과정을 수행한다.
+
+```bash
+> npx eslint --init
+```
+
+이 과정에서 설정을 위해 몇가지 질문이 나타나는데 질문과 해당 선택은 다음과 같다.
+
+```bash
+Ok to proceed? (y) y
+
+What do you want to lint? · javascript
+How would you like to use ESLint? · To check syntax and find problems
+What type of modules does your project use? · JavaScript modules (import/export)
+Which framework does your project use? · react
+Does your project use TypeScript? · Yes
+Where does your code run? · browser
+Which language do you want your configuration file be written in? · ts
+
+Would you like to install them now? · Yes
+Which package manager do you want to use? · yarn
+```
+
+프로젝트 루트에 ```eslint.config.ts``` 파일이 생성된다.
+
+### Prettier
+
+Prettier의 설치는 다음과 같다.
+
+```bash
+yarn add -D prettier
+```
+
+다음 프로젝트 루트에 ```.prettierrc``` 파일을 생성하여 다음과 같이 작성한다.
+
+```
+{
+  "semi": true,
+  "singleQuote": true,
+  "printWidth": 100,
+  "tabWidth": 2,
+  "trailingComma": "es5"
+}
+```
+
+다음으로 ```eslint.config.ts``` 파일을 다음과 같이 수정한다.
+```ts
+...
+//추가
+import prettierPlugin from "eslint-plugin-prettier";
+import prettierConfig from "eslint-config-prettier";
+
+export default defineConfig([
+  { 
+    files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"], 
+    plugins: { 
+      prettier: prettierPlugin,  //수정
+     },
+    //추가
+    rules: {
+      ...js.configs.recommended.rules,
+    },
+    //////
+    extends: ["js/recommended"], 
+    languageOptions: { globals: globals.browser } 
+  },
+  tseslint.configs.recommended,
+  pluginReact.configs.flat.recommended,
+  prettierConfig, //추가
+]);
 ```
 
 
