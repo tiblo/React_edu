@@ -45,7 +45,7 @@ body {
 Scss를 사용한 하려면 scss로 작성한 내용을 css로 변환하기 위한 ``node-sass``라는 라이브러리가 필요하다.
 
 ```
-> yarn add node-sass
+> yarn add sass
 ```
 
 확장자가 ``.scss``인 파일을 생성하여 스타일시트를 작성한다.(components 폴더 하위에 css용 폴더를 생성하여 작성하는 것이 좋다.)
