@@ -42,7 +42,7 @@ body {
 여기에서는 css와 유사한 scss를 사용한다.
 
 ## Sass 설치 및 활용
-Scss를 사용한 하려면 scss로 작성한 내용을 css로 변환하기 위한 ``node-sass``라는 라이브러리가 필요하다.
+Scss를 사용한 하려면 scss로 작성한 내용을 css로 변환하기 위한 ``sass``라는 라이브러리가 필요하다.
 
 ```
 > yarn add sass
